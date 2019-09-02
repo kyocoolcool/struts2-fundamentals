@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="GBK"?>
+<!-- Spring配置文件的根元素，使用spring-beans.xsd語義約束 -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns="http://www.springframework.org/schema/beans"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 配置名為person的Bean，其實現類是org.crazyit.app.service.Person類 -->
+	<bean id="person" class="org.crazyit.app.service.Person">
+		<!-- 控制調用setAxe()方法，將容器中axe Bean作為傳入參數 -->
+		<property name="axe" ref="axe"/>
+		<property name="age" value="20"/>
+	</bean>
+	<!-- 配置名為axe的Bean，其實現類是org.crazyit.app.service.Axe類 -->
+	<bean id="axe" class="org.crazyit.app.service.Axe"/>
+	<!-- 配置名為win的Bean，其實現類是javax.swing.JFrame類 -->
+	<bean id="win" class="javax.swing.JFrame"/>
+	<!-- 配置名為date的Bean，其實現類是java.util.Date類 -->
+	<bean id="date" class="java.util.Date"/>
+</beans>
