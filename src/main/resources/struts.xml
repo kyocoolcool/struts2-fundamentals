@@ -6,40 +6,44 @@
 
 <struts>
     <!-- 所有匹配*.action的請求都由struts2處理 -->
-    <constant name="struts.action.extension" value="action,do" />
+    <constant name="struts.action.extension" value="action,do"/>
     <!-- 是否啟用開發模式 -->
-    <constant name="struts.devMode" value="true" />
+    <constant name="struts.devMode" value="true"/>
     <!-- struts配置文件改動後，是否重新加載 -->
-    <constant name="struts.configuration.xml.reload" value="true" />
+    <constant name="struts.configuration.xml.reload" value="true"/>
     <!-- 設置瀏覽器是否緩存靜態內容 -->
-    <constant name="struts.serve.static.browserCache" value="false" />
+    <constant name="struts.serve.static.browserCache" value="false"/>
     <!-- 請求參數的編碼方式 -->
-    <constant name="struts.i18n.encoding" value="UTF-8" />
+    <constant name="struts.i18n.encoding" value="UTF-8"/>
     <!-- 每次HTTP請求系統都重新加載資源文件，有助於開發 -->
-    <constant name="struts.i18n.reload" value="true" />
+    <constant name="struts.i18n.reload" value="true"/>
     <!-- 文件上傳最大值 -->
-    <constant name="struts.multipart.maxSize" value="104857600" />
+    <constant name="struts.multipart.maxSize" value="104857600"/>
     <!-- 讓struts2支持動態方法調用 -->
-    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
     <!-- Action名稱中是否還是用斜線 -->
-    <constant name="struts.enable.SlashesInActionNames" value="false" />
+    <constant name="struts.enable.SlashesInActionNames" value="false"/>
     <!-- 允許標籤中使用表達式語法 -->
-    <constant name="struts.tag.altSyntax" value="true" />
+    <constant name="struts.tag.altSyntax" value="true"/>
     <!-- 對於WebLogic,Orion,OC4J此屬性應該設置成true -->
-    <constant name="struts.dispatcher.parametersWorkaround" value="false" />
+    <constant name="struts.dispatcher.parametersWorkaround" value="false"/>
     <!--靜態資源過濾-->
-    <constant name="struts.action.excludePattern" value="/struts/.*?" />
+    <constant name="struts.action.excludePattern" value="/struts/.*?"/>
 
-    <package name="com.struts2Demo.action" namespace="/" extends="struts-default" >
+    <package name="com.struts2Demo.action" namespace="/" extends="struts-default">
         <action name="Struts2Tag" class="action.Struts2TagAction">
             <result>Struts2Tag.jsp</result>
         </action>
         <action name="errorRequest" class="action.Struts2TagAction" method="errorRequest">
-                <result>errorRequest.jsp</result>
+            <result>errorRequest.jsp</result>
+        </action>
+    <!--傳送json頁面-->
+        <action name="jsonDemo" class="action.JsonAction" method="jsonDemo">
+            <result>jsonDemo.jsp</result>
         </action>
     </package>
     <package name="actionTag" namespace="/ActionTag" extends="struts-default">
-        <action name="actionTag" class="action.ActionTagAction" >
+        <action name="actionTag" class="action.ActionTagAction">
             <result>MyActionTag.jsp?author=Chris&amp;job=bigboss大魔王&amp;age=15</result>
             <!--<result>MyActionTag.jsp</result>-->
         </action>
@@ -54,45 +58,45 @@
         </action>
     </package>
     <package name="BeanTag" namespace="/BeanTag" extends="struts-default">
-        <action name="BeanTag" class="action.BeanTagAction" >
+        <action name="BeanTag" class="action.BeanTagAction">
             <result>BeanTag.jsp</result>
         </action>
     </package>
     <!--name,class,method,result皆可用通配符號-->
-    <package name="DynamicAction"  namespace="/DynamicAction" extends="struts-default" >
+    <package name="DynamicAction" namespace="/DynamicAction" extends="struts-default">
         <!--<global-allowed-methods>update,add,delete,get</global-allowed-methods>-->
-        <action name="*_Action" class="action.DynamicAction" method="{1}" >
+        <action name="*_Action" class="action.DynamicAction" method="{1}">
             <result>{1}.jsp</result>
             <allowed-methods>update,add,delete,get</allowed-methods>
         </action>
     </package>
-    <package name="DateTag"  namespace="/dateTag" extends="struts-default">
+    <package name="DateTag" namespace="/dateTag" extends="struts-default">
         <action name="DateTag" class="action.DateTagAction">
-        <result>dateTag.jsp</result>
+            <result>dateTag.jsp</result>
         </action>
     </package>
-    <package name="IncludeTag"  namespace="/includeTag" extends="struts-default">
+    <package name="IncludeTag" namespace="/includeTag" extends="struts-default">
         <action name="IncludeTag" class="action.IncludeTagAction">
             <result>includeTag.jsp</result>
         </action>
     </package>
-    <package name="PushTag"  namespace="/pushTag" extends="struts-default">
+    <package name="PushTag" namespace="/pushTag" extends="struts-default">
         <action name="PushTag" class="action.PushTagAction">
             <result>pushTag.jsp</result>
         </action>
     </package>
     <package name="SetTag" namespace="/setTag" extends="struts-default">
-        <action name="SetTag" class="action.SetTagAction" >
+        <action name="SetTag" class="action.SetTagAction">
             <result>setTag.jsp</result>
         </action>
     </package>
     <package name="UrlTag" namespace="/urlTag" extends="struts-default">
-        <action name="UrlTag" class="action.UrlTagAction" >
+        <action name="UrlTag" class="action.UrlTagAction">
             <result>urlTag.jsp</result>
         </action>
     </package>
     <package name="UiTag" namespace="/uiTag" extends="struts-default">
-        <action name="UiTag" class="action.UiTagAction" >
+        <action name="UiTag" class="action.UiTagAction">
             <result>uiTag.jsp</result>
         </action>
         <action name="optionTransferSelectAction" class="action.OptionTransferSelectAction" method="display">
@@ -104,7 +108,7 @@
     </package>
     <!--使用Chain傳值開始第一次接收用Action的Set放入valueStack中-->
     <package name="chainDemo" namespace="/chainDemo" extends="struts-default">
-        <action name="chainDemo1" class="action.ChainDemoAction" >
+        <action name="chainDemo1" class="action.ChainDemoAction">
             <result>chain1.jsp</result>
         </action>
         <action name="chainDemo2" class="action.ChainDemoAction" method="chain2">
@@ -115,4 +119,34 @@
         </action>
     </package>
     <!--使用Chain傳值結束-->
+
+    <!--    回傳json演示-->
+    <package name="jsonAction" namespace="/" extends="json-default">
+        <interceptors>
+            <interceptor-stack name="myStack">
+                <interceptor-ref name="json"></interceptor-ref>
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="myStack" />
+        <action name="sendJsonAction" class="action.JsonAction" method="sendJson">
+            <interceptor-ref name="json"/>
+            <!--            1.可以全部回傳-->
+            <result type="json"/>
+            <!--            2.可以指定傳回的變量-->
+            <!--            <result type="json">-->
+            <!--                <param name="list"/>-->
+            <!--                <param name="users"/>-->
+            <!--                <param name="userA"/>-->
+            <!--            </result>-->
+            <!--            3.利用root參數 指定要傳回的變量-->
+            <!--            <result type="json">-->
+            <!--                <param name="root">user</param>-->
+            <!--            </result>-->
+        </action>
+        <action name="getJsonAction" class="action.JsonAction" method="getJson">
+<!--            <interceptor-ref name="json"/>-->
+            <result type="json"></result>
+        </action>
+    </package>
 </struts>
